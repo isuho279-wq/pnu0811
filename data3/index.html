@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025년 시도별 어린이 보호구역 내 보행 어린이 교통사고 심층 분석 웹보고서</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <div class="flex items-center gap-2 text-amber-400 font-semibold text-xs tracking-wider uppercase mb-1">
+                    <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                    교통안전 심층 통계 분석
+                </div>
+                <h1 class="text-xl sm:text-2xl font-bold tracking-tight">
+                    2025년 시도별 어린이 보호구역 내 보행 어린이 교통사고 분석
+                </h1>
+            </div>
+            <div class="flex items-center gap-3 no-print">
+                <button onclick="window.print()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium px-4 py-2 rounded-lg border border-slate-700 transition">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    보고서 인쇄 / PDF 저장
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+
+        <!-- Executive Summary KPI Cards -->
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="activity" class="w-5 h-5 text-indigo-600"></i>
+                    2025년 전국 현황 총괄
+                </h2>
+                <span class="text-xs text-slate-500">기준: 도로교통법상 어린이 보호구역 내 12세 이하 보행 사상자</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Total Accidents -->
+                <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 uppercase">전국 총 사고 건수</p>
+                            <h3 class="text-3xl font-extrabold text-slate-900 mt-2">496 <span class="text-base font-normal text-slate-500">건</span></h3>
+                        </div>
+                        <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+                            <i data-lucide="car-front" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>최다: 경기 (115건)</span>
+                        <span>최소: 세종 (3건)</span>
+                    </div>
+                </div>
+
+                <!-- Fatalities -->
+                <div class="bg-white rounded-2xl p-5 border border-red-200/80 shadow-sm hover:shadow-md transition bg-red-50/20">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-xs font-semibold text-red-600 uppercase">총 사망자 수</p>
+                            <h3 class="text-3xl font-extrabold text-red-600 mt-2">1 <span class="text-base font-normal text-red-500">명</span></h3>
+                        </div>
+                        <div class="p-3 bg-red-100 text-red-600 rounded-xl">
+                            <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-red-100/60 flex items-center justify-between text-xs text-red-700 font-medium">
+                        <span>치명률: 0.2%</span>
+                        <span>발생 지역: 대구(1명)</span>
+                    </div>
+                </div>
+
+                <!-- Injuries -->
+                <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 uppercase">총 부상자 수</p>
+                            <h3 class="text-3xl font-extrabold text-amber-600 mt-2">502 <span class="text-base font-normal text-slate-500">명</span></h3>
+                        </div>
+                        <div class="p-3 bg-amber-50 text-amber-600 rounded-xl">
+                            <i data-lucide="user-minus" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between">
+                        <span>중상/경상/부상신고자 포함</span>
+                        <span>사고 대비 101.2%</span>
+                    </div>
+                </div>
+
+                <!-- Injury Density -->
+                <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 uppercase">사고 1건당 평균 부상자</p>
+                            <h3 class="text-3xl font-extrabold text-indigo-600 mt-2">1.01 <span class="text-base font-normal text-slate-500">명</span></h3>
+                        </div>
+                        <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between">
+                        <span>최고: 강원/경남 (1.07)</span>
+                        <span>다수 피해 가능성 상존</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Analysis Highlight Cards -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Frequency Gap Card -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 text-indigo-600 font-bold text-sm mb-2">
+                        <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+                        지역별 사고 빈도 격차
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">상위 vs 하위 지역 38.3배 격차</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        사고 다발 지역인 <span class="font-bold text-slate-800">경기(115건), 서울(85건), 부산(38건)</span>에 전체 사고가 집중되었습니다. 
+                        학령인구 밀집도 및 차량 통행량 등 교통 노출도(Exposure)의 차이가 주요 원인입니다.
+                    </p>
+                </div>
+                <div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-600 flex justify-between">
+                    <span>최다: 경기 115건</span>
+                    <span class="text-slate-400">vs</span>
+                    <span>최소: 세종 3건</span>
+                </div>
+            </div>
+
+            <!-- Severity / Fatality Card -->
+            <div class="bg-white p-6 rounded-2xl border border-red-200 shadow-sm bg-red-50/10 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 text-red-600 font-bold text-sm mb-2">
+                        <i data-lucide="skull" class="w-4 h-4"></i>
+                        사고 심각도 특이점
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">대구: 사망 사고 1건 발생 (치명률 최고)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        대구는 총 31건 중 <span class="font-bold text-red-600">사망 1명, 부상 30명</span>으로 사상자 비율이 1:1로 정확히 일치합니다. 
+                        개별 사고의 물리적 충격력(Severity Index)이 매우 높았으며 과속 및 안전거리 미확보 가능성을 시사합니다.
+                    </p>
+                </div>
+                <div class="mt-4 p-3 bg-red-100/50 rounded-xl text-xs text-red-800 font-medium">
+                    대구 심각도 분석: 사고 1건당 단일 대형 피해 집중
+                </div>
+            </div>
+
+            <!-- Injury Density Card -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 text-amber-600 font-bold text-sm mb-2">
+                        <i data-lucide="users-round" class="w-4 h-4"></i>
+                        사고당 부상 밀도 다발 지역
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">강원·경남 부상 밀도 1.07로 전국 최고</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        <span class="font-bold text-slate-800">강원(1.07), 경남(1.07), 울산(1.06), 부산(1.03), 경기(1.02)</span> 등은 사고 건수보다 부상자 수가 많았습니다. 
+                        학교 정문, 학원가 등 보행자 밀집 구역에서 다수 어린이 동시 피해가 원인으로 분석됩니다.
+                    </p>
+                </div>
+                <div class="mt-4 p-3 bg-amber-50 rounded-xl border border-amber-100 text-xs text-amber-800 flex justify-between">
+                    <span>밀도 > 1.00 지역: 총 6개 시도</span>
+                    <span class="font-bold">단일 사고 연쇄 피해 위험</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Analytics Chart Section -->
+        <section class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="pie-chart" class="w-5 h-5 text-indigo-600"></i>
+                        지역별 사고 현황 및 부상 밀도 시각화
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">시도별 발생 건수, 부상자 수 및 사고 1건당 부상자 지수 비교</p>
+                </div>
+                <div class="flex items-center gap-2 no-print">
+                    <button id="btnViewCases" onclick="toggleChartView('cases')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition shadow-sm">
+                        사고 건수 & 부상자 수
+                    </button>
+                    <button id="btnViewDensity" onclick="toggleChartView('density')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                        사고당 부상 밀도
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chart Canvas Container -->
+            <div class="relative w-full h-[380px] sm:h-[420px]">
+                <canvas id="regionalChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Interactive Data Table Section -->
+        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="table" class="w-5 h-5 text-indigo-600"></i>
+                        지역별 상세 안전 통계 데이터
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">사고 건수 내림차순 기본 정렬 (컬럼 헤더를 클릭하여 정렬 가능)</p>
+                </div>
+
+                <!-- Controls: Filter & Search -->
+                <div class="flex flex-wrap items-center gap-3 no-print">
+                    <div class="relative">
+                        <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="searchInput" oninput="filterData()" placeholder="시도명 검색..." class="pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-36 sm:w-48">
+                    </div>
+                    <select id="riskFilter" onchange="filterData()" class="px-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700">
+                        <option value="all">전체 위험 유형</option>
+                        <option value="high-freq">사고 다발 지역 (≥30건)</option>
+                        <option value="high-density">부상 밀도 상위 (>1.00)</option>
+                        <option value="fatal">사망 사고 발생 지역</option>
+                        <option value="stable">부상 밀도 안정 지역 (=1.00)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-700">
+                    <thead class="bg-slate-50 text-xs uppercase text-slate-500 border-b border-slate-200 font-semibold select-none">
+                        <tr>
+                            <th scope="col" class="py-3.5 px-4 cursor-pointer hover:bg-slate-100 transition" onclick="sortTable('region')">
+                                <div class="flex items-center gap-1">시도명 <i data-lucide="arrow-up-down" class="w-3.5 h-3.5"></i></div>
+                            </th>
+                            <th scope="col" class="py-3.5 px-4 text-right cursor-pointer hover:bg-slate-100 transition" onclick="sortTable('accidents')">
+                                <div class="flex items-center justify-end gap-1">사고 건수 <i data-lucide="arrow-up-down" class="w-3.5 h-3.5"></i></div>
+                            </th>
+                            <th scope="col" class="py-3.5 px-4 text-right cursor-pointer hover:bg-slate-100 transition" onclick="sortTable('deaths')">
+                                <div class="flex items-center justify-end gap-1">사망자 수 <i data-lucide="arrow-up-down" class="w-3.5 h-3.5"></i></div>
+                            </th>
+                            <th scope="col" class="py-3.5 px-4 text-right cursor-pointer hover:bg-slate-100 transition" onclick="sortTable('injuries')">
+                                <div class="flex items-center justify-end gap-1">부상자 수 <i data-lucide="arrow-up-down" class="w-3.5 h-3.5"></i></div>
+                            </th>
+                            <th scope="col" class="py-3.5 px-4 text-right cursor-pointer hover:bg-slate-100 transition" onclick="sortTable('density')">
+                                <div class="flex items-center justify-end gap-1">사고 1건당 부상자 <i data-lucide="arrow-up-down" class="w-3.5 h-3.5"></i></div>
+                            </th>
+                            <th scope="col" class="py-3.5 px-4 text-center">위험 특성 레이블</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-slate-100">
+                        <!-- Table content inserted dynamically via JS -->
+                    </tbody>
+                    <tfoot class="bg-slate-900 text-white font-bold text-sm">
+                        <tr>
+                            <td class="py-3.5 px-4">전국 합계</td>
+                            <td class="py-3.5 px-4 text-right">496 건</td>
+                            <td class="py-3.5 px-4 text-right text-red-400">1 명</td>
+                            <td class="py-3.5 px-4 text-right text-amber-300">502 명</td>
+                            <td class="py-3.5 px-4 text-right text-indigo-300">1.01 명</td>
+                            <td class="py-3.5 px-4 text-center text-xs text-slate-400 font-normal">전국 평균 치명률 0.2%</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <!-- External Notebook LM Resource Link Section -->
+        <section class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-3xl mb-6">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded-full text-xs font-semibold mb-3">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    Google NotebookLM 관련 분석 자료
+                </span>
+                <h2 class="text-2xl font-bold tracking-tight text-white">어린이 보호구역 심층 분석 노트 바로가기</h2>
+                <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                    상세한 분석 노트와 인터랙티브 아티팩트는 아래 Google NotebookLM 워크스페이스에서 바로 확인하실 수 있습니다.
+                </p>
+            </div>
+
+            <!-- External Link Card -->
+            <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-indigo-500/60 transition">
+                <div class="flex items-start gap-4">
+                    <div class="p-3 bg-indigo-600/20 text-indigo-400 rounded-xl border border-indigo-500/30 shrink-0">
+                        <i data-lucide="book-open-check" class="w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-indigo-300 font-semibold mb-1">GOOGLE NOTEBOOKLM ARTIFACT</div>
+                        <h3 class="text-lg font-bold text-white">어린이 보호구역 보행 교통사고 통합 분석 보고서</h3>
+                        <p class="text-xs text-slate-400 mt-1 break-all line-clamp-1">
+                            https://notebook.google.com/notebook/4e738228-6163-412e-9a25-1625fc4a0ba8/artifact/6d07bfe6-a94d-4160-a5a9-8cb8d0f03e96
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 w-full md:w-auto shrink-0 no-print">
+                    <a href="https://notebook.google.com/notebook/4e738228-6163-412e-9a25-1625fc4a0ba8/artifact/6d07bfe6-a94d-4160-a5a9-8cb8d0f03e96?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm rounded-xl transition shadow-lg shadow-indigo-600/30">
+                        <span>Notebook 아티팩트 열기</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+                    <button onclick="copyNotebookLink()" class="p-3 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl transition border border-slate-600" title="링크 복사">
+                        <i data-lucide="copy" class="w-4 h-4" id="copyIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Toast alert for link copy -->
+            <div id="copyToast" class="hidden mt-4 p-3 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs rounded-lg items-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                <span>링크가 클립보드에 복사되었습니다!</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>2025년 시도별 어린이 보호구역 내 보행 어린이 교통사고 통계 심층 분석 보고서 기반 웹 대시보드</p>
+            <p class="mt-1 text-slate-400">자료출처: 어린이 보호구역 보행 어린이 사상자 사고 통계 종합</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Controller Logic -->
+    <script>
+        // Data Source
+        const rawData = [
+            { region: '경기', accidents: 115, deaths: 0, injuries: 117, density: 1.02, riskType: 'high-freq' },
+            { region: '서울', accidents: 85, deaths: 0, injuries: 86, density: 1.01, riskType: 'high-freq' },
+            { region: '부산', accidents: 38, deaths: 0, injuries: 39, density: 1.03, riskType: 'high-freq' },
+            { region: '인천', accidents: 32, deaths: 0, injuries: 32, density: 1.00, riskType: 'high-freq' },
+            { region: '대구', accidents: 31, deaths: 1, injuries: 30, density: 0.97, riskType: 'fatal' },
+            { region: '충남', accidents: 27, deaths: 0, injuries: 27, density: 1.00, riskType: 'stable' },
+            { region: '제주', accidents: 23, deaths: 0, injuries: 23, density: 1.00, riskType: 'stable' },
+            { region: '경북', accidents: 21, deaths: 0, injuries: 21, density: 1.00, riskType: 'stable' },
+            { region: '전북', accidents: 20, deaths: 0, injuries: 20, density: 1.00, riskType: 'stable' },
+            { region: '대전', accidents: 19, deaths: 0, injuries: 19, density: 1.00, riskType: 'stable' },
+            { region: '울산', accidents: 17, deaths: 0, injuries: 18, density: 1.06, riskType: 'high-density' },
+            { region: '강원', accidents: 15, deaths: 0, injuries: 16, density: 1.07, riskType: 'high-density' },
+            { region: '충북', accidents: 15, deaths: 0, injuries: 15, density: 1.00, riskType: 'stable' },
+            { region: '경남', accidents: 14, deaths: 0, injuries: 15, density: 1.07, riskType: 'high-density' },
+            { region: '광주', accidents: 13, deaths: 0, injuries: 13, density: 1.00, riskType: 'stable' },
+            { region: '전남', accidents: 8, deaths: 0, injuries: 8, density: 1.00, riskType: 'stable' },
+            { region: '세종', accidents: 3, deaths: 0, injuries: 3, density: 1.00, riskType: 'stable' }
+        ];
+
+        let currentData = [...rawData];
+        let currentSort = { key: 'accidents', direction: 'desc' };
+        let chartInstance = null;
+
+        // Initialize Lucide Icons
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            renderChart('cases');
+            renderTable();
+        });
+
+        // Copy Link Function
+        function copyNotebookLink() {
+            const url = "https://notebook.google.com/notebook/4e738228-6163-412e-9a25-1625fc4a0ba8/artifact/6d07bfe6-a94d-4160-a5a9-8cb8d0f03e96?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_";
+            
+            const tempInput = document.createElement("input");
+            tempInput.value = url;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById("copyToast");
+            toast.classList.remove("hidden");
+            toast.classList.add("flex");
+
+            setTimeout(() => {
+                toast.classList.add("hidden");
+                toast.classList.remove("flex");
+            }, 3000);
+        }
+
+        // Render Interactive Chart using Chart.js
+        function renderChart(viewType) {
+            const ctx = document.getElementById('regionalChart').getContext('2d');
+            
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const labels = rawData.map(d => d.region);
+
+            if (viewType === 'cases') {
+                const accidentsData = rawData.map(d => d.accidents);
+                const injuriesData = rawData.map(d => d.injuries);
+
+                chartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: '사고 건수',
+                                data: accidentsData,
+                                backgroundColor: 'rgba(99, 102, 241, 0.85)',
+                                borderColor: 'rgb(79, 70, 229)',
+                                borderWidth: 1,
+                                borderRadius: 4
+                            },
+                            {
+                                label: '부상자 수',
+                                data: injuriesData,
+                                backgroundColor: 'rgba(245, 158, 11, 0.75)',
+                                borderColor: 'rgb(217, 119, 6)',
+                                borderWidth: 1,
+                                borderRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'top' },
+                            tooltip: { mode: 'index', intersect: false }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            } else {
+                const densityData = rawData.map(d => d.density);
+                const backgroundColors = densityData.map(val => 
+                    val > 1.00 ? 'rgba(239, 68, 68, 0.85)' : 'rgba(100, 116, 139, 0.6)'
+                );
+
+                chartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '사고 1건당 부상자 수 (밀도 지수)',
+                            data: densityData,
+                            backgroundColor: backgroundColors,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'top' },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `사고 1건당 ${context.raw}명 부상`
+                                }
+                            }
+                        },
+                        scales: {
+                            y: { 
+                                min: 0.9, 
+                                max: 1.12, 
+                                grid: { color: '#f1f5f9' },
+                                title: { display: true, text: '부상자 수 / 사고 건수' }
+                            },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Switch Chart View Modes
+        function toggleChartView(mode) {
+            const btnCases = document.getElementById('btnViewCases');
+            const btnDensity = document.getElementById('btnViewDensity');
+
+            if (mode === 'cases') {
+                btnCases.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition shadow-sm';
+                btnDensity.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+                renderChart('cases');
+            } else {
+                btnDensity.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition shadow-sm';
+                btnCases.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+                renderChart('density');
+            }
+        }
+
+        // Render Table Rows
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            if (currentData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400">검색 또는 필터 조건에 일치하는 데이터가 없습니다.</td></tr>`;
+                return;
+            }
+
+            currentData.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50/80 transition';
+
+                // Risk Tag Builder
+                let badgeHtml = '';
+                if (item.deaths > 0) {
+                    badgeHtml = `<span class="px-2.5 py-1 bg-red-100 text-red-700 rounded-full text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="alert-circle" class="w-3 h-3"></i> 사망사고 발생 (대구)</span>`;
+                } else if (item.density > 1.00) {
+                    badgeHtml = `<span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="users" class="w-3 h-3"></i> 부상 밀도 다발 (${item.density})</span>`;
+                } else if (item.accidents >= 30) {
+                    badgeHtml = `<span class="px-2.5 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold inline-flex items-center gap-1"><i data-lucide="trending-up" class="w-3 h-3"></i> 사고 다발 지역</span>`;
+                } else {
+                    badgeHtml = `<span class="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-normal">부상 밀도 안정 (1.00)</span>`;
+                }
+
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-semibold text-slate-900">${item.region}</td>
+                    <td class="py-3 px-4 text-right font-medium">${item.accidents} 건</td>
+                    <td class="py-3 px-4 text-right font-medium ${item.deaths > 0 ? 'text-red-600 font-bold' : 'text-slate-400'}">${item.deaths} 명</td>
+                    <td class="py-3 px-4 text-right font-medium text-amber-700">${item.injuries} 명</td>
+                    <td class="py-3 px-4 text-right font-semibold ${item.density > 1.00 ? 'text-indigo-600' : 'text-slate-700'}">${item.density.toFixed(2)} 명</td>
+                    <td class="py-3 px-4 text-center">${badgeHtml}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Filter Function
+        function filterData() {
+            const searchValue = document.getElementById('searchInput').value.trim().toLowerCase();
+            const filterValue = document.getElementById('riskFilter').value;
+
+            currentData = rawData.filter(item => {
+                const matchesSearch = item.region.toLowerCase().includes(searchValue);
+                let matchesRisk = true;
+
+                if (filterValue === 'high-freq') {
+                    matchesRisk = item.accidents >= 30;
+                } else if (filterValue === 'high-density') {
+                    matchesRisk = item.density > 1.00;
+                } else if (filterValue === 'fatal') {
+                    matchesRisk = item.deaths > 0;
+                } else if (filterValue === 'stable') {
+                    matchesRisk = item.density === 1.00 && item.deaths === 0;
+                }
+
+                return matchesSearch && matchesRisk;
+            });
+
+            // Re-apply sorting
+            sortTable(currentSort.key, false);
+        }
+
+        // Table Sort Function
+        function sortTable(key, toggle = true) {
+            if (toggle) {
+                if (currentSort.key === key) {
+                    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    currentSort.key = key;
+                    currentSort.direction = 'desc';
+                }
+            }
+
+            currentData.sort((a, b) => {
+                let valA = a[key];
+                let valB = b[key];
+
+                if (typeof valA === 'string') {
+                    return currentSort.direction === 'asc' 
+                        ? valA.localeCompare(valB, 'ko') 
+                        : valB.localeCompare(valA, 'ko');
+                } else {
+                    return currentSort.direction === 'asc' ? valA - valB : valB - valA;
+                }
+            });
+
+            renderTable();
+        }
+    </script>
+</body>
+</html>
