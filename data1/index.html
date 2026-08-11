@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경영학과 입시정보 심층 분석 및 진학 전략 보고서 (5등급제 기준)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col custom-scrollbar">
+
+    <!-- Header Section -->
+    <header class="hero-gradient text-white pt-8 pb-16 px-4 sm:px-6 lg:px-8 shadow-xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Home Button -->
+            <div class="mb-5">
+                <a href="../index.html" class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-xl text-xs font-semibold text-white border border-white/20 transition-all duration-200 hover:shadow-md">
+                    <i class="fa-solid fa-house"></i> 홈으로 이동
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-semibold tracking-wide text-blue-200 border border-white/20 mb-3">
+                        <i class="fa-solid fa-graduation-cap"></i> 인문·사회계열 선호도 1위 | 5등급제 입시 가이드
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                        경영학과 입시정보 & 합격 전략
+                    </h1>
+                    <p class="mt-3 text-blue-100 text-sm sm:text-base max-w-3xl leading-relaxed">
+                        성취평가 및 고교 5등급제 환산 기준 입결 지표 분석부터 생기부 세특 주제, 세부 전공 트랙, 주요 대학별 5등급제 가이드까지 한눈에 확인하는 종합 진학 가이드
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 text-right min-w-[220px]">
+                    <span class="block text-xs text-blue-200 font-medium">학과 매력도</span>
+                    <span class="text-3xl font-black text-amber-300">TOP 1</span>
+                    <span class="block text-xs text-blue-200 mt-1">5등급제 체제 최상위 모집단위</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="sticky top-0 z-30 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex space-x-6 overflow-x-auto py-3 custom-scrollbar text-xs sm:text-sm font-semibold text-slate-600">
+                <a href="#summary" class="text-blue-600 border-b-2 border-blue-600 pb-1 whitespace-nowrap hover:text-blue-600">
+                    <i class="fa-solid fa-chart-pie mr-1"></i> 핵심 대시보드
+                </a>
+                <a href="#curriculum" class="hover:text-blue-600 whitespace-nowrap transition-colors">
+                    <i class="fa-solid fa-book-open mr-1"></i> 세부 전공 & 커리큘럼
+                </a>
+                <a href="#strategy" class="hover:text-blue-600 whitespace-nowrap transition-colors">
+                    <i class="fa-solid fa-bullseye mr-1"></i> 전형별 합격 전략
+                </a>
+                <a href="#universities" class="hover:text-blue-600 whitespace-nowrap transition-colors">
+                    <i class="fa-solid fa-university mr-1"></i> 대학별 5등급제 입시 탐색기
+                </a>
+                <a href="#activities" class="hover:text-blue-600 whitespace-nowrap transition-colors">
+                    <i class="fa-solid fa-lightbulb mr-1"></i> 생기부 세특 주제 추천
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-10">
+
+        <!-- Executive Key Metrics -->
+        <section id="summary">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="bg-white p-5 rounded-2xl card-shadow border border-slate-100 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-xl font-bold flex-shrink-0">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 font-medium">평균 교과 합격선 (5등급제)</p>
+                        <h3 class="text-lg font-bold text-slate-800">1.0 ~ 1.8 <span class="text-xs font-normal text-slate-400">등급</span></h3>
+                        <p class="text-[11px] text-slate-400 mt-0.5">상위 10%(1등급) 이내 핵심 분포</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl card-shadow border border-slate-100 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xl font-bold flex-shrink-0">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 font-medium">수시 평균 경쟁률</p>
+                        <h3 class="text-lg font-bold text-slate-800">12.5 : 1 <span class="text-xs font-semibold text-indigo-600">▲ 지속 상승</span></h3>
+                        <p class="text-[11px] text-slate-400 mt-0.5">학종 및 교과전형 합산</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl card-shadow border border-slate-100 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl font-bold flex-shrink-0">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 font-medium">평균 취업률</p>
+                        <h3 class="text-lg font-bold text-slate-800">68.4% <span class="text-xs font-semibold text-emerald-600">인문계 최상위</span></h3>
+                        <p class="text-[11px] text-slate-400 mt-0.5">금융, 마케팅, IT, 공공기관 등</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl card-shadow border border-slate-100 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-xl font-bold flex-shrink-0">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 font-medium">최신 트렌드 키워드</p>
+                        <h3 class="text-base font-bold text-slate-800">AI / ESG / 빅데이터</h3>
+                        <p class="text-[11px] text-slate-400 mt-0.5">데이터 기반 경영학의 융합</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: 경영학과 세부 영역 & 커리큘럼 -->
+        <section id="curriculum" class="bg-white rounded-2xl card-shadow border border-slate-100 p-6 sm:p-8">
+            <div class="pb-5 mb-6 border-b border-slate-100">
+                <div class="flex items-center gap-2 text-blue-600 font-semibold text-xs tracking-wider uppercase mb-1">
+                    <i class="fa-solid fa-layer-group"></i> Academic Structure
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">경영학의 6대 세부 전공 영역 분석</h2>
+                <p class="text-sm text-slate-500 mt-1">경영학과는 기업과 조직의 자원을 효율적으로 관리하기 위한 6가지 핵심 영역을 다룹니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="p-5 rounded-2xl bg-gradient-to-br from-blue-50/80 to-slate-50 border border-blue-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </span>
+                        <span class="text-xs font-semibold text-blue-700 bg-blue-100/80 px-2.5 py-1 rounded-full">인기 트랙</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-lg mb-2">마케팅 (Marketing)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        소비자의 니즈를 분석하고, 제품 개발부터 가격 결정, 유통, 광고 및 홍보 전략을 수립하는 마인드셋을 배웁니다.
+                    </p>
+                    <div class="text-[11px] text-slate-500 font-medium pt-2 border-t border-blue-100/60">
+                        <i class="fa-solid fa-tag text-blue-500 mr-1"></i> 키워드: 소비자행동론, 디지털마케팅, 브랜딩
+                    </div>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-gradient-to-br from-emerald-50/80 to-slate-50 border border-emerald-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-coins"></i>
+                        </span>
+                        <span class="text-xs font-semibold text-emerald-700 bg-emerald-100/80 px-2.5 py-1 rounded-full">고소득 진로</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-lg mb-2">재무·금융 (Finance)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        기업의 자금 조달 및 투자 결정, 주식·채권 분석, 자산운용 및 리스크 관리를 유기적으로 다룹니다.
+                    </p>
+                    <div class="text-[11px] text-slate-500 font-medium pt-2 border-t border-emerald-100/60">
+                        <i class="fa-solid fa-tag text-emerald-500 mr-1"></i> 키워드: 기업재무, 투자론, 파생상품, 금융공학
+                    </div>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-gradient-to-br from-amber-50/80 to-slate-50 border border-amber-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 bg-amber-600 text-white rounded-xl flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-calculator"></i>
+                        </span>
+                        <span class="text-xs font-semibold text-amber-700 bg-amber-100/80 px-2.5 py-1 rounded-full">전문직 중심</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-lg mb-2">회계 (Accounting)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        기업의 재무 상태와 경영 성과를 언어화하여 측정·기록하고, 이해관계자에게 전달하는 시스템을 학문적으로 배웁니다.
+                    </p>
+                    <div class="text-[11px] text-slate-500 font-medium pt-2 border-t border-amber-100/60">
+                        <i class="fa-solid fa-tag text-amber-500 mr-1"></i> 키워드: 재무회계, 관리회계, 세무회계, CPA
+                    </div>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-gradient-to-br from-purple-50/80 to-slate-50 border border-purple-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 bg-purple-600 text-white rounded-xl flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </span>
+                        <span class="text-xs font-semibold text-purple-700 bg-purple-100/80 px-2.5 py-1 rounded-full">리더십 핵심</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-lg mb-2">인사·조직 (HR & OB)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        조직 내 구성원들의 행동을 이해하고, 인재 채용·평가·보상 및 조직문화를 효과적으로 설계합니다.
+                    </p>
+                    <div class="text-[11px] text-slate-500 font-medium pt-2 border-t border-purple-100/60">
+                        <i class="fa-solid fa-tag text-purple-500 mr-1"></i> 키워드: 조직행동론, 인적자원관리, 리더십
+                    </div>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/80 to-slate-50 border border-indigo-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </span>
+                        <span class="text-xs font-semibold text-indigo-700 bg-indigo-100/80 px-2.5 py-1 rounded-full">효율성 극대화</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-lg mb-2">생산·운영관리 (OM/SCM)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        원자재 조달부터 제품 생산, 물류 공급망(SCM) 구축 및 품질 관리까지 최적의 프로세스를 탐구합니다.
+                    </p>
+                    <div class="text-[11px] text-slate-500 font-medium pt-2 border-t border-indigo-100/60">
+                        <i class="fa-solid fa-tag text-indigo-500 mr-1"></i> 키워드: 공급망관리(SCM), 품질경영, 경영과학
+                    </div>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-gradient-to-br from-rose-50/80 to-slate-50 border border-rose-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 bg-rose-600 text-white rounded-xl flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </span>
+                        <span class="text-xs font-semibold text-rose-700 bg-rose-100/80 px-2.5 py-1 rounded-full">신흥 융합 분야</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-lg mb-2">경영정보시스템 (MIS & Analytics)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        정보기술(IT)과 빅데이터, 인공지능(AI)을 활용하여 기업 경영 의사결정을 혁신하는 미래형 분야입니다.
+                    </p>
+                    <div class="text-[11px] text-slate-500 font-medium pt-2 border-t border-rose-100/60">
+                        <i class="fa-solid fa-tag text-rose-500 mr-1"></i> 키워드: 비즈니스 애널리틱스, 데이터 분석, E-비즈니스
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 전형별 핵심 합격 전략 -->
+        <section id="strategy" class="bg-white rounded-2xl card-shadow border border-slate-100 p-6 sm:p-8">
+            <div class="pb-5 mb-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-blue-600 font-semibold text-xs tracking-wider uppercase mb-1">
+                        <i class="fa-solid fa-key"></i> Admissions Roadmap (5등급제 체제)
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900">경영학과 주요 입시 전형별 핵심 가이드</h2>
+                </div>
+                <div class="bg-slate-100 p-1.5 rounded-xl flex text-xs font-semibold">
+                    <button id="btnTab1" onclick="switchStrategyTab('student-record')" class="px-3.5 py-1.5 rounded-lg bg-white text-blue-600 shadow-sm transition-all">학생부교과/종합</button>
+                    <button id="btnTab2" onclick="switchStrategyTab('csat')" class="px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all">수능 정시</button>
+                    <button id="btnTab3" onclick="switchStrategyTab('essay')" class="px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all">논술 전형</button>
+                </div>
+            </div>
+
+            <!-- Tab 1 Content: 학생부교과/종합 -->
+            <div id="tabContent1" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h3 class="text-base font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span class="w-7 h-7 bg-blue-600 text-white rounded-lg flex items-center justify-center text-xs font-bold">1</span>
+                            학생부교과전형 (5등급제 기준)
+                        </h3>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-blue-500 mt-0.5"></i>
+                                <span><strong>내신 등급 관리:</strong> 5등급제에서 1등급은 상위 10%입니다. 주요 대학 교과전형은 <strong>1.0 ~ 1.3등급</strong> 이내여야 안정권입니다.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-blue-500 mt-0.5"></i>
+                                <span><strong>동점자 변별 & 수능 최저:</strong> 1등급 인원 확대(4%→10%)로 동점자가 증가하므로 정교한 수능 최저학력기준 충족이 합격의 열쇠입니다.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-blue-500 mt-0.5"></i>
+                                <span><strong>선택과목 성취도:</strong> [경제], [실용수학], [사회문제 탐구] 등 상경계열 진로선택과목 성취도 A 확보 필수.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h3 class="text-base font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span class="w-7 h-7 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-xs font-bold">2</span>
+                            학생부종합전형(학종) (5등급제 기준)
+                        </h3>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-indigo-500 mt-0.5"></i>
+                                <span><strong>정성평가 강화:</strong> 교과 등급 변별력이 완화됨에 따라 세부능력 및 특기사항(세특)의 학업역량과 진로탐구 정성평가가 더욱 중요해졌습니다.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-indigo-500 mt-0.5"></i>
+                                <span><strong>수학적 문해력:</strong> 인문계열이지만 통계학, 경제학 기반 수학적 문제해결 역량이 세특에 깊이 있게 표출되어야 합니다.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-indigo-500 mt-0.5"></i>
+                                <span><strong>협업 & 리더십:</strong> 팀 프로젝트, 학급 회장, 동아리 활동에서 주도적인 소통 능력을 증명하는 기록.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2 Content: 수능 정시 (Hidden by default) -->
+            <div id="tabContent2" class="hidden space-y-6">
+                <div class="bg-blue-50/60 p-5 rounded-2xl border border-blue-100">
+                    <h3 class="text-base font-bold text-slate-800 mb-2">정시 모집 수능 영역별 반영 비율 트렌드</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        경영학과는 상경계열로 구분되어 타 인문계열 과목에 비해 <strong>수학 영역 반영 비율(35%~40%)</strong>이 월등히 높습니다.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                        <div class="bg-white p-3 rounded-xl border border-blue-100">
+                            <span class="text-[11px] text-slate-500 block">국어</span>
+                            <span class="text-base font-bold text-slate-800">30% ~ 35%</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-blue-100">
+                            <span class="text-[11px] text-slate-500 block">수학 (통합형 수능)</span>
+                            <span class="text-base font-bold text-blue-600">35% ~ 40%</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-blue-100">
+                            <span class="text-[11px] text-slate-500 block">탐구 (통합사회/과학)</span>
+                            <span class="text-base font-bold text-slate-800">20% ~ 25%</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-blue-100">
+                            <span class="text-[11px] text-slate-500 block">영어</span>
+                            <span class="text-base font-bold text-slate-800">등급별 감점</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3 Content: 논술 전형 (Hidden by default) -->
+            <div id="tabContent3" class="hidden space-y-6">
+                <div class="bg-amber-50/60 p-5 rounded-2xl border border-amber-100">
+                    <h3 class="text-base font-bold text-slate-800 mb-2">상경계열 논술 특징: 인문 + 수리 논술 유형</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        경영학과 논술은 일반 인문논술과 달리 <strong>수리논술문항(확률과 통계, 수학 기반 도표 해석 및 계산 문제)</strong>이 포함되는 대학(연세대, 한양대, 중앙대, 경희대 상경 등)이 다수 존재합니다. 수리적 사고력과 logical reasoning이 합격의 열쇠입니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: 대학별 입시 지표 탐색기 (Interactive Explorer) -->
+        <section id="universities" class="bg-white rounded-2xl card-shadow border border-slate-100 p-6 sm:p-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between pb-5 mb-6 border-b border-slate-100 gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-blue-600 font-semibold text-xs tracking-wider uppercase mb-1">
+                        <i class="fa-solid fa-magnifying-glass"></i> Interactive Data Finder (5등급제 환산)
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900">주요 대학 경영학과 5등급제 입시 데이터 탐색기</h2>
+                    <p class="text-sm text-slate-500 mt-1">고교학점제 5등급제 기준 수시 교과/종합 70% Cut 및 정시 백분율 지표</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <div class="relative">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="univSearchInput" onkeyup="filterUnivTable()" placeholder="대학명 검색..." class="pl-8 pr-3 py-1.5 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-blue-500 w-36 sm:w-48">
+                    </div>
+                    <select id="regionFilter" onchange="filterUnivTable()" class="py-1.5 px-3 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-blue-500 text-slate-600">
+                        <option value="ALL">전체 지역</option>
+                        <option value="서울">서울권</option>
+                        <option value="수도권">경기/인천</option>
+                        <option value="지방거점">지방거점국립/지역선도</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Chart Display -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8 items-center">
+                <div class="lg:col-span-2 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                    <h3 class="text-xs font-bold text-slate-700 mb-3 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-bar text-blue-600"></i> 대학별 수시 교과/종합 70% Cut (5등급제 환산)
+                    </h3>
+                    <div class="h-[250px]">
+                        <canvas id="univCutChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-900 to-indigo-900 text-white p-5 rounded-2xl shadow-md">
+                    <span class="inline-block px-2.5 py-0.5 bg-blue-500/30 text-blue-200 rounded text-[10px] font-semibold mb-2 border border-blue-400/30">
+                        5등급제 입시 핵심 가이드
+                    </span>
+                    <h4 class="font-bold text-base mb-2">5등급제 체제 지원 전략</h4>
+                    <p class="text-xs text-blue-100 leading-relaxed space-y-2">
+                        <span>• <strong>1등급 비율(10%):</strong> 기존 9등급제의 1~2.2등급 수준이 5등급제 1등급에 포함됩니다.</span><br>
+                        <span class="block mt-1">• 상위권 경영학과 교과는 <strong>1.0~1.2등급</strong>대 형성 및 세특 서류 평가 반영 비율이 확대되는 추세입니다.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left text-xs text-slate-600">
+                    <thead class="bg-slate-50 text-slate-700 font-semibold uppercase tracking-wider border-y border-slate-200">
+                        <tr>
+                            <th class="py-3.5 px-4">대학명</th>
+                            <th class="py-3.5 px-4">권역</th>
+                            <th class="py-3.5 px-4 text-center">학생부교과 (5등급제 Cut)</th>
+                            <th class="py-3.5 px-4 text-center">학생부종합 (5등급제 Cut)</th>
+                            <th class="py-3.5 px-4 text-center">수시 평균 경쟁률</th>
+                            <th class="py-3.5 px-4 text-center">수능 백분율(정시)</th>
+                            <th class="py-3.5 px-4 text-center">주요 특징 & 최저기준</th>
+                        </tr>
+                    </thead>
+                    <tbody id="univTableBody" class="divide-y divide-slate-100">
+                        <!-- JS Inserted Rows -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 4: 생기부 세특 탐구 주제 추천 -->
+        <section id="activities" class="bg-white rounded-2xl card-shadow border border-slate-100 p-6 sm:p-8">
+            <div class="pb-5 mb-6 border-b border-slate-100">
+                <div class="flex items-center gap-2 text-blue-600 font-semibold text-xs tracking-wider uppercase mb-1">
+                    <i class="fa-solid fa-pen-nib"></i> Student Record Guide
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">교과별 경영학 융합 세특 탐구 주제 추천</h2>
+                <p class="text-sm text-slate-500 mt-1">5등급제 서류평가 강화 대비 과목별 심화 탐구 보고서 예시 키워드</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 transition-all">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-8 h-8 bg-blue-100 text-blue-700 rounded-lg flex items-center justify-center font-bold text-xs">수학</span>
+                        <h3 class="font-bold text-slate-800 text-sm">확률과 통계 / 수학 II</h3>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 mb-2">
+                        <span class="text-xs font-bold text-blue-600 block mb-1">탐구 주제 예시</span>
+                        <p class="text-xs text-slate-700 font-medium">"정규분포와 표본조사를 활용한 고객 만족도 데이터 분석 및 알고리즘 마케팅 전략 수립"</p>
+                    </div>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        통계적 추정과 신뢰구간 개념을 마케팅 설문 조사 데이터에 적용하여 비즈니스 의사결정의 수학적 근거를 제시하는 탐구.
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 transition-all">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-8 h-8 bg-emerald-100 text-emerald-700 rounded-lg flex items-center justify-center font-bold text-xs">사회</span>
+                        <h3 class="font-bold text-slate-800 text-sm">경제 / 사회문화</h3>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 mb-2">
+                        <span class="text-xs font-bold text-emerald-600 block mb-1">탐구 주제 예시</span>
+                        <p class="text-xs text-slate-700 font-medium">"ESG(환경·사회·지배구조) 경영이 기업의 장기 재무 가치 및 소비자 브랜드 태도에 미치는 영향"</p>
+                    </div>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        기업의 사회적 책임과 지속가능경영 공시 사례를 비교 분석하여 경제적 이윤 추구와 윤리 경영의 상호작용 평가.
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 transition-all">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-8 h-8 bg-purple-100 text-purple-700 rounded-lg flex items-center justify-center font-bold text-xs">영어</span>
+                        <h3 class="font-bold text-slate-800 text-sm">영어 I / 영어 독해와 작문</h3>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 mb-2">
+                        <span class="text-xs font-bold text-purple-600 block mb-1">탐구 주제 예시</span>
+                        <p class="text-xs text-slate-700 font-medium">"글로벌 기업의 해외 시장 진출 시 문화적 차이가 마케팅 커뮤니케이션에 미치는 영향 사례 연구"</p>
+                    </div>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        원문 아티클(Harvard Business Review 등)을 읽고 글로벌 마케팅 현지화 전략 및 문화간 소통 방식 분석.
+                    </p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 transition-all">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-8 h-8 bg-amber-100 text-amber-700 rounded-lg flex items-center justify-center font-bold text-xs">정보</span>
+                        <h3 class="font-bold text-slate-800 text-sm">정보 / 인공지능 기초</h3>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 mb-2">
+                        <span class="text-xs font-bold text-amber-600 block mb-1">탐구 주제 예시</span>
+                        <p class="text-xs text-slate-700 font-medium">"생성형 AI 기술이 유통 및 공급망 관리(SCM)의 예측 정확도 향상에 미치는 영향 분석"</p>
+                    </div>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        빅데이터와 AI를 활용한 재고 관리 자동화 및 e-커머스 추천 알고리즘의 비즈니스 모델 혁신 탐구.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-xs mt-auto">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="text-slate-300 font-medium">경영학과 입시 심층 분석 및 진학 전략 가이드 (5등급제 개편 반영)</p>
+            <p class="mt-1 text-slate-500">본 보고서의 입결 등급 데이터는 고교학점제 5등급제(1등급 상위 10%, 2등급 상위 34%) 기준 환산 추정치입니다.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript logic -->
+    <script>
+        // University Data Array (Converted to 5-Grade Scale)
+        // 5-Grade Scale: 1등급(10%), 2등급(34%), 3등급(66%), 4등급(90%), 5등급(100%)
+        const univData = [
+            { name: "서울대학교", region: "서울", type: "국립", gyoGwa: "미모집", hakJong: "1.10", ratio: "7.8", csat: "98.5", note: "지균/일반전형, 수학적 사고력 강조" },
+            { name: "연세대학교", region: "서울", type: "사립", gyoGwa: "1.05", hakJong: "1.15", ratio: "14.2", csat: "97.8", note: "면접형/활동우수형, Z점수 반영" },
+            { name: "고려대학교", region: "서울", type: "사립", gyoGwa: "1.08", hakJong: "1.20", ratio: "15.1", csat: "97.5", note: "학교추천/학업우수, 수능최저 반영" },
+            { name: "서강대학교", region: "서울", type: "사립", gyoGwa: "1.15", hakJong: "1.30", ratio: "18.5", csat: "95.8", note: "다전공 제도 활성화, 수학 반영높음" },
+            { name: "성균관대학교", region: "서울", type: "사립", gyoGwa: "1.12", hakJong: "1.28", ratio: "16.8", csat: "96.2", note: "글로벌경영/경영학 구분 모집" },
+            { name: "한양대학교", region: "서울", type: "사립", gyoGwa: "1.10", hakJong: "1.35", ratio: "17.4", csat: "95.5", note: "수능최저 없는 교과전형 존재" },
+            { name: "중앙대학교", region: "서울", type: "사립", gyoGwa: "1.20", hakJong: "1.40", ratio: "21.3", csat: "94.2", note: "CAU융합인재/탐구형인재" },
+            { name: "경희대학교", region: "서울", type: "사립", gyoGwa: "1.22", hakJong: "1.45", ratio: "19.6", csat: "93.8", note: "네오르네상스 전형 대표" },
+            { name: "부산대학교", region: "지방거점", type: "국립", gyoGwa: "1.40", hakJong: "1.70", ratio: "10.4", csat: "88.5", note: "지역거점 1위, 수능최저 반영" },
+            { name: "경북대학교", region: "지방거점", type: "국립", gyoGwa: "1.45", hakJong: "1.75", ratio: "9.8", csat: "87.8", note: "지역거점 상경계열 전통 강세" },
+            { name: "건국대학교", region: "서울", type: "사립", gyoGwa: "1.30", hakJong: "1.55", ratio: "22.1", csat: "92.0", note: "KU자기추천 전형 인기" },
+            { name: "인하대학교", region: "수도권", type: "사립", gyoGwa: "1.55", hakJong: "1.85", ratio: "11.2", csat: "85.2", note: "수도권 주요 대학 상경계열" }
+        ];
+
+        let currentUnivList = [...univData];
+
+        window.onload = function() {
+            renderUnivTable(currentUnivList);
+            initUnivChart();
+        };
+
+        // Render Table
+        function renderUnivTable(list) {
+            const tbody = document.getElementById('univTableBody');
+            tbody.innerHTML = '';
+
+            list.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-colors";
+
+                const regionBadge = item.region === '서울' 
+                    ? '<span class="px-2 py-0.5 text-[10px] font-semibold bg-blue-100 text-blue-700 rounded-md">서울</span>'
+                    : item.region === '수도권'
+                    ? '<span class="px-2 py-0.5 text-[10px] font-semibold bg-indigo-100 text-indigo-700 rounded-md">수도권</span>'
+                    : '<span class="px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-700 rounded-md">지방거점</span>';
+
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 font-bold text-slate-800">${item.name}</td>
+                    <td class="py-3.5 px-4">${regionBadge}</td>
+                    <td class="py-3.5 px-4 text-center font-semibold text-blue-600">${item.gyoGwa === '미모집' ? '미모집' : item.gyoGwa + ' 등급'}</td>
+                    <td class="py-3.5 px-4 text-center font-semibold text-indigo-600">${item.hakJong} 등급</td>
+                    <td class="py-3.5 px-4 text-center font-medium">${item.ratio} : 1</td>
+                    <td class="py-3.5 px-4 text-center font-medium text-emerald-600">${item.csat}%</td>
+                    <td class="py-3.5 px-4 text-center text-[11px] text-slate-500">${item.note}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Filter Table
+        function filterUnivTable() {
+            const searchVal = document.getElementById('univSearchInput').value.toLowerCase();
+            const regionVal = document.getElementById('regionFilter').value;
+
+            currentUnivList = univData.filter(item => {
+                const matchSearch = item.name.toLowerCase().includes(searchVal);
+                const matchRegion = (regionVal === 'ALL') || (item.region === regionVal);
+                return matchSearch && matchRegion;
+            });
+
+            renderUnivTable(currentUnivList);
+        }
+
+        // Strategy Tab Switcher
+        function switchStrategyTab(tab) {
+            const content1 = document.getElementById('tabContent1');
+            const content2 = document.getElementById('tabContent2');
+            const content3 = document.getElementById('tabContent3');
+
+            const btn1 = document.getElementById('btnTab1');
+            const btn2 = document.getElementById('btnTab2');
+            const btn3 = document.getElementById('btnTab3');
+
+            // reset
+            [content1, content2, content3].forEach(c => c.classList.add('hidden'));
+            [btn1, btn2, btn3].forEach(b => {
+                b.className = "px-3.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all";
+            });
+
+            if (tab === 'student-record') {
+                content1.classList.remove('hidden');
+                btn1.className = "px-3.5 py-1.5 rounded-lg bg-white text-blue-600 shadow-sm font-bold transition-all";
+            } else if (tab === 'csat') {
+                content2.classList.remove('hidden');
+                btn2.className = "px-3.5 py-1.5 rounded-lg bg-white text-blue-600 shadow-sm font-bold transition-all";
+            } else if (tab === 'essay') {
+                content3.classList.remove('hidden');
+                btn3.className = "px-3.5 py-1.5 rounded-lg bg-white text-blue-600 shadow-sm font-bold transition-all";
+            }
+        }
+
+        // Chart.js (5-Grade Scale)
+        function initUnivChart() {
+            const ctx = document.getElementById('univCutChart').getContext('2d');
+            
+            // Top 8 universities for visual clarity
+            const topUnivs = univData.slice(0, 8);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: topUnivs.map(u => u.name),
+                    datasets: [
+                        {
+                            label: '학생부교과 70% Cut (5등급제 환산)',
+                            data: topUnivs.map(u => u.gyoGwa === '미모집' ? null : parseFloat(u.gyoGwa)),
+                            backgroundColor: '#3b82f6',
+                            borderRadius: 6
+                        },
+                        {
+                            label: '학생부종합 70% Cut (5등급제 환산)',
+                            data: topUnivs.map(u => parseFloat(u.hakJong)),
+                            backgroundColor: '#6366f1',
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top', labels: { boxWidth: 12, font: { family: 'Noto Sans KR', size: 11 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let val = context.raw;
+                                    return val ? context.dataset.label + ': ' + val + '등급 (5등급제)' : '미모집';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            reverse: true, // Lower grade number is better
+                            title: { display: true, text: '내신 등급 (5등급제 환산)', font: { size: 10 } },
+                            min: 1.0,
+                            max: 2.0,
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
